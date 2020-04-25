@@ -11,7 +11,7 @@ const forms = (a) => {
     loading: "Загрузка...",
     success: "Спасибо! Скоро мы с вами свяжемся",
     failure: "Oops! Что-то пошло не так...",
-    spinner: "../../assets/img/spinner-kat.gif",
+    spinner: "../../assets/img/spinner.gif",
     ok: "../../assets/img/ok.png",
     fail: "../../assets/img/fail.png",
   };
@@ -36,12 +36,11 @@ const forms = (a) => {
     });
     upload.forEach(item => {
       item.previousElementSibling.textContent = 'Файл не выбран';
-    })
+    });
   };
 
   upload.forEach(item => {
     item.addEventListener('input', () => {
-      console.log(item.files[0]);
       let dots;
       const forFileName = item.files[0].name.split('.')[0];
 
@@ -77,12 +76,9 @@ const forms = (a) => {
       const formData = new FormData(form);
       let api;
       api = form.closest('.popup-design') || form.classList.contains('calc_form') ? path.designer : path.question;
-      console.log(api);
-
 
       postData(api, formData)
         .then((res) => {
-          console.log(res);
           statusImg.setAttribute('src', message.ok);
           textMessage.textContent = message.success;
         })
@@ -97,7 +93,7 @@ const forms = (a) => {
             form.style.display = 'block';
             form.classList.remove('fadeOutUp');
             form.classList.add('fadeInUp');
-          }, 5000);
+          }, 3000);
         });
     });
   });
